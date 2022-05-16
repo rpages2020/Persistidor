@@ -1,0 +1,22 @@
+create table sId (
+sId int primary key,
+)
+
+create table clase (
+id_clase int primary key,
+nombre varchar (20) not null,
+id_clase_padre int refereces clase
+)
+
+create table objeto(
+id_objeto int primary key,
+id_clase int references clase
+)
+
+create table atributos (
+id_atributo primary key,
+id_objeto int references objeto,
+nombre varchar (30),
+tipo varchar(20),
+valor varchar (20)
+)

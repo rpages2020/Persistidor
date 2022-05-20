@@ -9,12 +9,13 @@ public class testPersistidor
 	public static void main(String[] args)
 	{
 	Persistidor persistidor = new Persistidor();	
-		
+	Persona2 p2= new Persona2();
+	p2.setDni(18192019);
+	p2.setNombre("Fernando");
 	Persona p = new Persona();
 	p.setDni(36566754);
 	p.setNombre("Ruben");
-		boolean resp = persistidor.store(1, p);
-	System.out.println(resp);
+		boolean resp = persistidor.store(1, p2);
 	
 	}
 }	

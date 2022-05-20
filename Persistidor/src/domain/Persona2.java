@@ -1,11 +1,24 @@
 package domain;
-@Persistable
-public class Persona
+
+import java.util.ArrayList;
+
+public class Persona2
 {
-	@Persistable
 	private int dni;
-	@NotPersistable
+	@Persistable
 	private String nombre;
+	private ArrayList<String> telefonos;
+	
+	
+	
+	public ArrayList<String> getTelefonos()
+	{
+		return telefonos;
+	}
+	public void setTelefonos(ArrayList<String> telefonos)
+	{
+		this.telefonos=telefonos;
+	}
 	public int getDni()
 	{
 		return dni;

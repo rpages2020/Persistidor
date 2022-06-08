@@ -1,18 +1,24 @@
-create table sId (
-sId int primary key,
+create table sesion (
+id_sesion int primary key,
 )
 
 create table clase (
-id_clase int primary key,
+id_clase int primary key,            
 nombre varchar (20) not null,
-id_clase_padre int refereces clase
+id_sesion int references sesion
 )
 
 create table objeto(
-id_objeto int primary key,
-id_clase int references clase
+id_sesion int references sesion null,
+id_objeto int primary key,        
+id_clase int references clase,
+id_padre int references objeto null,
+primitivo boolean,
+nombre varchar (30),
+valor varchar (20)
 )
 
+//////////////////////////////////////esto no
 create table atributos (
 id_atributo primary key,
 id_objeto int references objeto,

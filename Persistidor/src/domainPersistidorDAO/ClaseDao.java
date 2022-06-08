@@ -22,12 +22,13 @@ public class ClaseDao
 	public List<Clase> findAll(int sId){
 		String hql ="";
 		//hql+="SELECT nombre ";
-	    hql+="FROM clase ";
-		hql+="WHERE p.id_sesion =:x ";
+	    hql+="FROM Clase ";
+		hql+="WHERE id_sesion =:x ";
 		Query q = em.createQuery(hql);
 		q.setParameter("x",sId);
 	   return q.getResultList();
 	}
+	
 	@Transactional ( value = TxType.REQUIRED)
 	public void persistClass(Clase clase){
 		em.persist(clase);

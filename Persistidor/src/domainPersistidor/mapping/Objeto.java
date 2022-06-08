@@ -1,5 +1,7 @@
 package pablosz.demo.domainPersistidor.mapping;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -8,7 +10,7 @@ import javax.persistence.*;
 public class Objeto
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_objeto")
 	private int idObjeto;
 	
@@ -17,29 +19,25 @@ public class Objeto
 	@JoinColumn(name="id_clase")
 	private Clase clase;
 	
-	@OneToOne(cascade={CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_sesion")
-	private SId  sesion;
+	private SId  sesionObjeto;
+
 	
-//	@ManyToOne
-//	@JoinColumn(name="id_objeto")
-	private int id_padre;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_padre")
+	private Objeto padre;
 	
 	private boolean primitivo;
 	
 	private String nombre;
 	
 	private String valor;
+	
+	
+	@OneToMany(mappedBy = "padre", cascade = CascadeType.ALL)
+	private List<Objeto> objetosHijos;
 
-	public int getIdObjeto()
-	{
-		return idObjeto;
-	}
-
-	public void setIdObjeto(int idObjeto)
-	{
-		this.idObjeto=idObjeto;
-	}
 
 	public Clase getClase()
 	{
@@ -53,12 +51,12 @@ public class Objeto
 
 	public SId getSesion()
 	{
-		return sesion;
+		return sesionObjeto;
 	}
 
 	public void setSesion(SId sesion)
 	{
-		this.sesion=sesion;
+		this.sesionObjeto =sesion;
 	}
 
 //	public Objeto getId_padre()
@@ -76,19 +74,34 @@ public class Objeto
 		return primitivo;
 	}
 
-	public int getId_padre()
+	public int getIdObjeto()
 	{
-		return id_padre;
+		return idObjeto;
 	}
 
-	public void setId_padre(int id_padre)
+	public void setIdObjeto(int idObjeto)
 	{
-		this.id_padre=id_padre;
+		this.idObjeto=idObjeto;
 	}
 
-	public void setPrimitivo(boolean primitivo)
+	public SId getSesionObjeto()
 	{
-		this.primitivo=primitivo;
+		return sesionObjeto;
+	}
+
+	public void setSesionObjeto(SId sesionObjeto)
+	{
+		this.sesionObjeto=sesionObjeto;
+	}
+
+	public Objeto getPadre()
+	{
+		return padre;
+	}
+
+	public void setPadre(Objeto padre)
+	{
+		this.padre=padre;
 	}
 
 	public String getNombre()
@@ -109,7 +122,22 @@ public class Objeto
 	public void setValor(String valor)
 	{
 		this.valor=valor;
-	}	
+	}
 
-	
+	public List<Objeto> getObjetosHijos()
+	{
+		return objetosHijos;
+	}
+
+	public void setObjetosHijos(List<Objeto> objetosHijos)
+	{
+		this.objetosHijos=objetosHijos;
+	}
+
+	public void setPrimitivo(boolean primitivo)
+	{
+		this.primitivo=primitivo;
+	}
+
+
 }

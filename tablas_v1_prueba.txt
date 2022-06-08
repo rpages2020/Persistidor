@@ -3,14 +3,14 @@ id_sesion int primary key,
 )
 
 create table clase (
-id_clase int primary key,            
+id_clase int IDENTITY primary key,            
 nombre varchar (20) not null,
 id_sesion int references sesion
 )
 
 create table objeto(
 id_sesion int references sesion null,
-id_objeto int primary key,        
+id_objeto int IDENTITY primary key,        
 id_clase int references clase,
 id_padre int references objeto null,
 primitivo boolean,
